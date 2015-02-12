@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
-      on iOS devices-->
-    <meta name="viewport"
-          content="initial-scale=1, maximum-scale=1,user-scalable=no">
-    <title>Create Map with Custom ArcGISDynamicMapServiceLayer Layer
-      Definitions</title>
+  <!--The viewport meta tag is used to improve the presentation and behavior of the samples
+    on iOS devices-->
+  <meta name="viewport"
+        content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>Create Map with Custom ArcGISDynamicMapServiceLayer Layer
+    Definitions</title>
 
-    <link rel="stylesheet"
-          href="http://js.arcgis.com/3.12/esri/css/esri.css"/>
-    <style>
-      html, body, #mapDiv {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-      }
+  <link rel="stylesheet"
+        href="http://js.arcgis.com/3.12/esri/css/esri.css"/>
+  <style>
+    html, body, #mapDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
 
-    </style>
+  </style>
 
-    <script src="http://js.arcgis.com/3.12/"></script>
-    <script>
-      var map;
+  <script src="http://js.arcgis.com/3.12/"></script>
+  <script>
+    /*
+     Final Project Requirements:
+     1) A map using ArcGIS javascript API.
+     2) The map must point to at least one of your' own map services.
+     3) The map service should be pointed to a database.
+     4) The map should have some interactive feature in it (drawing or buttons to turn layer on/off, etc).
+     5) Be creative.
+     **/
 
-      require([
-        "esri/map",
-        "esri/layers/ArcGISDynamicMapServiceLayer",
-        "esri/layers/ImageParameters",
-        "dojo/domReady!"
-      ],
+    var map;
+
+    require([
+          "esri/map",
+          "esri/layers/ArcGISDynamicMapServiceLayer",
+          "esri/layers/ImageParameters",
+          "dojo/domReady!"
+        ],
         function (Map, ArcGISDynamicMapServiceLayer, ImageParameters) {
 
           map = new Map("mapDiv", {
@@ -39,14 +48,14 @@
             zoom: 7
           });
 
-          //construct ArcGISDynamicMapServiceLayer with imageParameters from above
+          // Create a new layer and add that layer to the map.
           var lyr = new ArcGISDynamicMapServiceLayer("http://stg.tsstools.com/arcgis/rest/services/txdot/lrs/MapServer");
           map.addLayer(lyr);
         });
-    </script>
-  </head>
+  </script>
+</head>
 
-  <body>
-    <div id="mapDiv"></div>
-  </body>
+<body>
+<div id="mapDiv"></div>
+</body>
 </html>
