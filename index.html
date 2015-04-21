@@ -7,21 +7,35 @@
     on iOS devices-->
   <meta name="viewport"
         content="initial-scale=1, maximum-scale=1,user-scalable=no">
-  <title>Create Map with Custom ArcGISDynamicMapServiceLayer Layer
-    Definitions</title>
+
+  <title>Final Project</title>
 
   <link rel="stylesheet"
-        href="http://js.arcgis.com/3.12/esri/css/esri.css"/>
-  <style>
-    html, body, #mapDiv {
-      padding: 0;
-      margin: 0;
-      height: 100%;
+        href="https://js.arcgis.com/3.12/esri/css/esri.css"/>
+
+  <link rel="stylesheet" href="styles.css"/>
+<style>
+   footer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        background-color: black;
+        height: 20px;
+        z-index: 999999;
     }
 
-  </style>
-
-  <script src="http://js.arcgis.com/3.12/"></script>
+html, body, #mapDiv {
+   
+    height: 100% ;
+    padding: 20px;
+    margin: 20px;
+     background-color: #3a8e37;
+}
+    
+ 
+    </style>
+  <script src="https://js.arcgis.com/3.12/"></script>
   <script>
     /*
      Final Project Requirements:
@@ -31,31 +45,48 @@
      4) The map should have some interactive feature in it (drawing or buttons to turn layer on/off, etc).
      5) Be creative.
      **/
-
     var map;
-
     require([
           "esri/map",
-          "esri/layers/ArcGISDynamicMapServiceLayer",
-          "esri/layers/ImageParameters",
+          "esri/layers/FeatureLayer",
+          "esri/geometry/Point",
           "dojo/domReady!"
         ],
-        function (Map, ArcGISDynamicMapServiceLayer, ImageParameters) {
-
+        function (Map, FeatureLayer, Point) {
           map = new Map("mapDiv", {
-            basemap: "streets",
-            center: [-14.258, 50.236],
-            zoom: 7
+            basemap: "osm",
+            center: [-76.8756,40.2697],
+            zoom: 14
           });
-
           // Create a new layer and add that layer to the map.
-          var lyr = new ArcGISDynamicMapServiceLayer("http://stg.tsstools.com/arcgis/rest/services/txdot/lrs/MapServer");
+          var lyr = new FeatureLayer("http://dev.tsstools.com/arcgis/rest/services/hu/hu2/MapServer/0");
           map.addLayer(lyr);
+          window.onClick = function(lat, lon){
+            var point = new Point(lon, lat);
+            map.centerAndZoom(point, 16);
+          }
         });
   </script>
 </head>
-
+    
 <body>
+
+    <h1 style="font-family:verdana">Stewardship Map Guide</h1>
+    <p>
+        <a href="#"  onclick="onClick(40.328269, -76.871351)" >Girl Scouts of Harrisburg - Susquehanna Twp Recreation	1900 Linglestown Rd Harrisburg, PA 17110</a> <br>
+        <a href="#" onclick="onClick(40.307890, -76.886898)">Boy Scouts of Harrisburg - Wildwood Park	100 Wildwood Way Harrisburg, PA 17110</a> <br>
+        <a href="#"  onclick="onClick(40.263890, -76.882927)">Department of Environmental Protection - Capitol Park 	General Services Harrisburg, PA 17120</a> <br>
+        <a href="#" onclick="onClick(40.272332, -76.858435)"> National Registry of Historic Places - Reservoir Park	100 Concert Dr Harrisburg, PA 17103 </a><br>
+        <a href="#" onclick="onClick(40.255990, -76.888029)">Harrisburg University - City Island	General Services Harrisburg, PA 17120 </a><br>
+        <a href="#" onclick="onClick(40.341758, -76.907753)">Reenacters of Harrisburg - Fort Hunter 	5300 N Front St Harrisburg, PA 17110 </a><br>
+
+    
+    </p>
+    
 <div id="mapDiv"></div>
+
+<footer>
+ 
+</footer>
 </body>
 </html>
