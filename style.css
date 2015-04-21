@@ -1,0 +1,16 @@
+html, body, #mapDiv {
+  padding: 0;
+  margin: 30px;
+  height: 100%;
+     
+}
+
+footer{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  background-color: #3a8e37;;
+  opacity: 0.4;
+  width: 20px;
+  text-align:center;
+}
